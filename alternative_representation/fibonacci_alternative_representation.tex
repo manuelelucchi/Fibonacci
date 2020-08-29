@@ -1,0 +1,107 @@
+\documentclass[amsmath,amssymb,aps,pra,reprint,groupedaddress,showpacs]{revtex4-1}
+
+\usepackage{multirow}
+\usepackage{verbatim}
+\usepackage{color,graphicx}
+
+\input{../Common}
+
+\begin{document} 
+
+\title{Fibonacci Sequence Alternative Representation}
+ 
+\author{Lucchi Manuele}
+\email[]{manuele.lucchi@studenti.unimi.it}
+\affiliation{IT Department Students, Universita' degli Studi di Milano, Citta' degli Studi, Milano, Italia}
+
+\date{\today}
+
+\begin{abstract}
+In this Research we will introduce a new representation of the Fibonacci Sequence starting from its Generative Function, the Binet Formula. 
+The result will be an equation that can be parallelized in a multithreaded system and that only uses positive integers.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+The Fibonacci Sequence [1] is a simple, but really important, Sequence in Natural Numbers that can be found in a lot of places in nature, 
+for example flowers' petals follow it in their numeration. The sequence is just the sum of its previous terms: 
+$$ F_{n} = F_{n-1} + F_{n-2} $$
+In 1843 Binet introduced its Generative Function called the Binet Formula [2] (even if it was already known a century earlier by Euler, Daniel Bernoulli and de Moivre) that allows everyone to
+calculate the $n_{th}$ Fibonacci Number without using a recursive approach
+$$f(n) = \frac{1}{\sqrt{5}} \left[ \left( \frac{1+\sqrt{5}}{2} \right) ^n - \left( \frac{1-\sqrt{5}}{2} \right)^n \right] $$
+However this representation uses irrational numbers like $\sqrt{5}$ that causes a certain level of imprecision in the result that should be a positive integer.
+Our approach consists in using the Newton Binomial [3] to simplify all the irrational numbers and then optimize the result.
+
+\section{Transformation}
+
+The first step is to take out the $\frac{1}{2^n}$
+$$f(n) = \frac{1}{2^n\sqrt{5}} \left[ \left( 1+\sqrt{5} \right) ^n - \left( 1-\sqrt{5} \right)^n \right]$$
+Now we can notice that $(1 + \sqrt{5})^n$ and $(1 - \sqrt{5})^n$ are both in the form $(a + b)^n$ so they are suitable for the Newton Binomial transformation,
+so we can write them like \\
+$ A_n:= \sum_{k=0}^n \binom{n}{k} \left(\sqrt{5} \right) ^k $ and $ B_n:= \sum_{k=0}^n \binom{n}{k} \left( -\sqrt{5} \right) ^k $ both with $k \in N$.
+If we unroll the sums we'll find some similarities between A and B.\\
+So
+\begin{gather*}
+A = a\sqrt{5} +b5 + c\sqrt{5^3} + d5^2 + ... + z\sqrt{ 5 }^k \\
+B = -a\sqrt{5} +b5 + -c\sqrt{5^3} + d5^2 + ... + z \left( -\sqrt{5} \right) ^k
+\end{gather*} 
+with $a, b, c, d,$  ..., $z \in N$. \\
+
+Since it's $f(n)=\frac{1}{2^n\sqrt{5}} \left[ A - B \right]$ we'll have
+\begin{align*}
+A - B &= a\sqrt{5} +b5 + c\sqrt{5^3} + d5^2 + ... + z\sqrt{5}^k  \\
+&- \left( -a\sqrt{5} +b5 + -c\sqrt{5^3} + d5^2 + ... + z \left( -\sqrt{5} \right)^k \right) \\
+&= a\sqrt{5} +b5 + c\sqrt{5^3} + d5^2 + ... + z\sqrt{5}^k +a\sqrt{5} -b5 \\
+&+ c\sqrt{5^3} - d5^2 + ... - z \left( -\sqrt{5} \right) ^k
+\end{align*}
+
+Now we can see that all members that have an integer exponent can be reduced. If we define $C:= A - B$ we get
+\begin{align*}
+C_n &= \sum_{k=0}^n \binom{n}{k} \left(\sqrt{5} \right) ^k - \sum_{k=0}^n \binom{n}{k} \left(-\sqrt{5} \right) ^k\\
+&= \sum_{k=0}^n \binom{n}{k} \left[ \left(\sqrt{5} \right) ^k - \left(-\sqrt{5} \right) ^k \right]
+\end{align*}
+We can now split the sum again, this time differentiating between odd and even steps
+
+\begin{align*}
+C_n &= \sum_{k=0}^{n/2} \binom{n}{2k} \left[ \left(\sqrt{5} \right) ^{2k} - \left(-\sqrt{5} \right) ^{2k} \right]\\
+&+ \sum_{k=0}^{n/2} \binom{n}{2k + 1} \left[ \left(\sqrt{5} \right) ^{2k + 1} - \left(-\sqrt{5} \right) ^{2k +1} \right]
+\end{align*}
+
+Now if we analyze the sums one by one, we can observe that the first one converges to 0, $\forall n \in{N}$ where $n$ is odd
+$$ \sum_{k=0}^{\frac{n}{2}} \binom{n}{2k} \left[ \left(\sqrt{5} \right) ^{2k} - \left(-\sqrt{5} \right) ^{2k} \right] = 0 $$
+while the second one will become
+
+\begin{align*}
+C &= \sum_{k=0}^{\frac{n}{2}} \binom{n}{2k + 1} \left[ \left(\sqrt{5} \right) ^{2k + 1} - \left(-\sqrt{5} \right) ^{2k + 1} \right]\\
+&= 2 \sum_{k=0}^\frac{n}{2} \binom{n}{2k + 1} \left(\sqrt{5} \right) ^{2k + 1}
+\end{align*}
+
+Since $2k + 1$ is always odd, we know that 
+
+\begin{align*}
+&\left(-\sqrt{5} \right) ^{2k + 1} =  - \left( \sqrt{5} \right) ^{2k + 1} \implies \\
+&\left( \sqrt{5} \right) ^{2k + 1} - \left(-\sqrt{5} \right) ^{2k + 1} = 2\left(\sqrt{5} \right) ^{2k + 1}
+\end{align*}
+
+In the end what remains is our $S_n$
+\begin{align*}
+S_n &= \frac{2}{2^n\sqrt{5}} \sum_{k=0}^\frac{n}{2} \binom{n}{2k + 1} \left( \sqrt{5} \right) ^{2k +1} \\
+&=\frac{1}{2^{n-1}} \sum_{k=0}^\frac{n}{2} \binom{n}{2k + 1}5^{k}
+\end{align*}
+
+This is a first version of the alternative formula that already supports a certain level of parallelization and, since every Fibonacci's Number is an integer, doesn't need to handle real numbers like the Binet one
+
+\begin{thebibliography}{24}
+ 
+  \bibitem{fibonaccigeneral}
+    {OEIS},
+    \textit{Sequence A000045 (Fibonacci Numbers)}
+
+  \bibitem{binetgeneral}
+    {DA VEDERE},
+    \textit{DA VEDERE}
+
+  \end{thebibliography}
+
+\end{document}

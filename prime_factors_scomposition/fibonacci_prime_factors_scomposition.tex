@@ -1,0 +1,250 @@
+\documentclass[amsmath,amssymb,aps,pra,reprint,groupedaddress,showpacs]{revtex4-1}
+
+\usepackage{multirow}
+\usepackage{verbatim}
+\usepackage{color,graphicx, verbatim, float}
+ 
+\input{../Common}
+
+\begin{document} 
+
+%%%%%%%%%%%%%%% TITLE %%%%%%%%%%%%%%%%
+\title{Fibonacci Sequence Prime Factors Properties}
+ 
+%%%%%%%%%%%%%%% AUTHORS %%%%%%%%%%%%%%%%
+\author{Lucchi Manuele}
+\email[]{manuele.lucchi@studenti.unimi.it}
+\affiliation{IT Department Students, Universita' degli Studi di Milano, Citta' degli Studi, Milano, Italia}
+
+%%%%%%%%%%%%%%% DATE %%%%%%%%%%%%%%%%
+\date{\today}
+
+%%%%%%%%%%%%%%% ABSTRACT %%%%%%%%%%%%%%%%
+\begin{abstract}
+The purpose of this research is to find a common pattern in the scomposition at prime factors of the Fibonacci Numbers. 
+This would allow to decompose these numbers avoiding a high computational cost. > <
+\end{abstract} 
+ 
+\maketitle
+
+%%%%%%%%%%%%%%% INTRODUCTION %%%%%%%%%%%%%%%%
+\section{Introduction}
+
+The Fibonacci Sequence [1] is a recurrent equation introduced by Fibonacci in 1202. This sequence rapidly increases the size of its numbers and has a lot of properties.
+The sequence is $F_n = F_{n-1} + F_{n-2}$. %ALTRO?
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=3in]{Assets/Fibonacci_In_100.png}
+\caption{The Fibonacci Sequence}
+\end{figure} 
+
+%%%%%%%%%%%%%%% POWER OF 2 BEHAVIOURS IN FIBONACCI NUMBERS %%%%%%%%%%%%%%
+\section{Powers of 2 behaviours in Fibonacci Numbers}
+
+We first tested with the simpler prime numbers. If we look at the power of 2 present in the first 100 Fibonacci Numbers we get something like this
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=3in]{Assets/PowerOf_2_In_100.png} % Power of 2 in 100
+\caption{Power of 2 as factor of the first 100 Fibonacci Numbers}
+\end{figure}
+
+It's pretty easy to see some sort of regularity between the power of 2 included in each Fibonacci Number. We can now increase the range to 1000 to see it better
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=3in]{Assets/PowerOf_2_In_1000.png} % Power of 2 in 1000
+\caption{Power of 2 as factor of the first 1000 Fibonacci Numbers}
+\end{figure}
+
+And again we can see a similar behaviour. First of all, we can notice how only numbers that are multiple of 3 are divisible by 2. 
+  
+So we can suppose that every number divisible by 3 has its Fibonacci equivalent to be even
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=3in]{Assets/PowerOf_2_Only_3_In_100.png} % Power of 2 in 100 divisible for 3
+\caption{Power of 2 as factor of the first 100 Fibonacci Numbers but only for $n$ divisible by 3}
+\end{figure}
+
+Instead, if we look only at every $n$ not divisible by 3, we get something like this
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=3in]{Assets/PowerOf_2_Except_3_In_100.png} % Power of 2 in 100 not divisible for 3
+\caption{Power of 2 as factor of the first 100 Fibonacci Numbers but only for $n$ not divisible by 3}
+\end{figure}
+
+So we can draw a first conclusion: 
+$$\mathbf{\forall n \in \mathbb{N} : 3\mid n \implies 2\mid Fibonacci(n)}$$
+
+Going forward, we can define the regularity for every exponent of 2, 
+for example, $F(n)$ is divisble by 2 starting from 3 (or $2^0 \cdot 3$) and $\forall n \in \mathbb{N}$ that is a multiple of 3.
+If we search for Fibonacci Numbers divisible for $2^3$, we have to start from 6 (or $2^1 \cdot 3$)
+and increase of 12 (or $2^2 \cdot 3$) at time. For $2^4$ the starting $n$ becomes 12 (or $2^2 * 4$)
+and the increase between similar exponents is 24 (or $2^4 \cdot 3$).\\
+
+So, after defining E as a certain exponent of 2 $\geq 3$ inside Fibonacci Numbers we can set the first $n$ which will appear as $2^{E-1}$ and the difference between the $n_s$ that have the same exponent of 2 in $F(n)$
+as $2^E \cdot 3$.\\
+
+However, the regularity in the exponents of 2 is not $\forall n$, since 0, 1, and 2 don't follow it,
+otherwise, with 1 as exponent we would have a 3 as a starting point, but we got 6. Also, it seems like that 2 as an exponent will not appear,
+so \AllBold{we will not find any $F(n)$ that can be divided by $2^2$ and not for $2^k$ with $k \in N \land k>2$ at the same time}
+
+%%%%%%%%%%%%%%% A FIRST SPECIFIC FORMULA %%%%%%%%%%%%%%%%
+\section{A first, specific Formula}
+
+We have now all the tools for the development of a simple equation that gives us the power of in the $n_{th}$ number of Fibonacci. Let's define $S_n$ as the exponent of 2 of the $n_{th}$ Fibonacci Number, 
+we can say that $\mathbf{S_n = S_{n/2} + 1}$. But that is true for $F(n)$ only where $n$ is divisible by both 2 and 3, so we have to create special cases for
+$n=1$ and divisible by 3 or 2 but not both. For $n = 1$ or $n \nmid 2 \land \mid 3 $ it's always 0, for $2 \mid n \land 3 \nmid n $ it's always one.
+
+So the final recurrent formula will be: 
+$$S_n = \begin{cases} S_{n/2} + 1, & \mbox{if }2|n \land 3 \mid n \\ 1, & \mbox{if } 2 \nmid n \land 3|n \\ 0, & \mbox{if } \left( 2 \mid n \land 3 \nmid n \right) \lor n = 1 \lor n = 0
+\end{cases} $$
+
+%//DECISAMENTE MIGLIORAMENTO FORMULA
+
+%%%%%%%%%%%%%%% A RECURRENT BEHAVIOR IN PRIME FACTORS SCOMPOSITION OF FIBONACCI NUMBERS %%%%%%%%%%%%%%%%
+\section{A recurrent behavior in Prime Factors Scomposition of Fibonacci Numbers}
+
+2 is not the only base to present a similar behavior. Every number (even non prime ones) have a similar regularity, but with some differences.
+For example the 3
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=3in]{Assets/PowerOf_3_In_100.png} % Power of 3 in 100
+\caption{Power of 3 as factor of the first 100 Fibonacci Numbers}
+\end{figure}
+
+Or the 5
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=3in]{Assets/PowerOf_5_In_100.png} % Power of 5 in 100
+\caption{Power of 5 as factor of the first 100 Fibonacci Numbers}
+\end{figure}
+
+And so on even for bigger prime numbers like 23
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=3in]{Assets/PowerOf_23_In_10000.png} % Power of 23 in 10000
+\caption{Power of 23 as factor of the first 10000 Fibonacci Numbers}
+\end{figure}
+
+%//INIZIO FOCUS STARTING POINT
+
+\begin{comment}
+
+But it's not exactly the same, it seems like the more we increase the base, the less the number appears as a prime factor in Fibonacci Numbers 
+(so with an increasing distance between the same exponents), but also this is not true, there are a lot of cases that don't follow the growing rule.
+
+But before getting in a more generic formula, we have to name some things (since they are going to be different for every base).
+
+\begin{enumerate} 
+\item $\mathbf{\Gamma}$ will be the base of the prime (or non-prime) number we are taking as example. 
+\item $\mathbf{\Omega}$ will be the exponent of base $\Gamma$ of $F(n)$ 
+\item $\mathbf{\Delta \Omega}$ will be defined as the distance between the Fibonacci Number before the next equal exponent will appear
+\item $\mathbf{F(n)}$ will be the $n_{th}$ Fibonacci Number
+\item $\mathbf{\lambda(\Omega, \Gamma)}$ will identify the function that returns the first $n$ where the exponent of the $\Gamma$ base appears in $F(n)$
+\item $\mathbf{\lambda_n(\Omega, \Gamma)}$ will, in the same way, be the $n_{th}$ Fibonacci Number where the given exponent for the given base appears
+\end{enumerate} 
+
+If we look at FIG. 6 and 7, we have two examples to notice the differences between different bases.
+For $\Gamma = 3$ and $\Gamma = 5$ we have $\lambda(1, 3) = 4$ and $\lambda(1, 5) = 6$.
+It seems like $\lambda(1, \Gamma) = \Gamma + 1$, but that's wrong: for example, 
+for $\Gamma = 11$ we have $\lambda(1, 11) = 10$. For $\Gamma = 13$ it will be $n = 7$. 
+So let's have a look at the starting points of the first prime numbers:
+
+\end{comment}
+
+%//FINE FOCUS STARTING POINT
+
+%%%%%%%%%%%%%%% FOCUS ON NON PRIME FACTORS %%%%%%%%%%%%%%%%
+\section{Focus on non-prime factors}
+
+Until now we tested only prime numbers, but we can expect a similar behavior for non-primes.
+For example if we look at power of 4 $(2^2)$ we notice that it's exactly halved compared of 2. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=3in]{Assets/MultiPowerOf_2_4_In_100.png}
+\caption{Comparison of powers of 2 and 4 of the first 1000 Fibonacci Numbers}
+\end{figure}
+
+We can have better overview by comparing the distance between the same exponent of two different factors 
+as they first appear. For example, using 2 and 4 as factors and comparing the index in Fibonacci numbers
+when they are on 1 by subtracting we get this:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=3in]{Assets/Sub_2_4_DistanceFor_1_In_1000.png}
+\caption{Difference between indexes of the same recurrence of the same grade of 2 and 4}
+\end{figure}
+
+As expected it's a linear function. If we try to divide them, again we can see the ratio it's exactly $\frac{1}{2}$
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=3in]{Assets/Div_2_4_DistanceFor_1_In_1000.png}
+\caption{Division between indexes of the same recurrence of the same grade of 2 and 4}
+\end{figure}
+
+%%%%%%%%%%%%%%% COMPARISON ON DIFFERENT BASES %%%%%%%%%%%%%%%%
+\section{Comparison on different bases}
+
+But if we try to obtain a choerent behaviour for other couple of numbers we'll be disappointed. The examples below are between 9 and 3
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=3in]{Assets/Sub_3_9_DistanceFor_1_In_1000.png}
+\caption{Difference between indexes of the same recurrence of the same grade of 3 and 9}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=3in]{Assets/Div_3_9_DistanceFor_1_In_1000.png}
+\caption{Division between indexes of the same recurrence of the same grade of 3 and 9}
+\end{figure}
+
+While in both of them we can see some sort of logic, it's not $1/3$ nor the square root ($9 = 3^2$).
+However, this sort of behavior is once again recurrent for every number, even between numbers that doesn't have anything in common.
+For example, 2 and 3:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=3in]{Assets/Sub_2_3_DistanceFor_1_In_500.png}
+\caption{Difference between indexes of the same recurrence of the same grade of 2 and 3}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=3in]{Assets/Div_2_3_DistanceFor_1_In_500.png}
+\caption{Division between indexes of the same recurrence of the same grade of 2 and 3}
+\end{figure}
+
+We tested a lot of possibilities but couldn't be able to find what connect them all, except one thing:
+In every test made by dividing the corrispondent indexes, going forward with the iterations shows the ratio to stabilize near a certain number
+We can see that already in FIG. 13 where it goes somewhere between 0.44 and 0.45 or in FIG.15 where it tends to 1.
+On the other hand, subtracting the indexes shows some different behaviours, from linear functions to regular curves that tries to mimic linear functions.
+Or again, what we saw in FIG. 14, that' pretty regular but different from everything else seen until now.
+Of course the same test can be done with different exponent grades with the same properties.
+
+%%%%%%%%%%%%%%% CONCLUSION %%%%%%%%%%%%%%%%
+\section{Conclusion}
+
+As we know, the Fibonacci Numbers hold a great number of interesting properties and this one sums up to the list.
+
+%%%%%%%%%%%%%%% REFERENCES %%%%%%%%%%%%%%%%
+\begin{thebibliography}{24}
+ 
+\bibitem{fibonaccigeneral}
+{OEIS},
+\textit{Sequence A000045 (Fibonacci Numbers)}
+
+\end{thebibliography}
+
+\end{document}
+
+%%https://www.overleaf.com/learn/latex/Positioning_images_and_tables

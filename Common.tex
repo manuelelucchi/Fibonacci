@@ -1,0 +1,33 @@
+\newcommand{\Proof}{\noindent\textbf{Proof.}\quad}
+\newcommand{\qed}{\hfill$\Box$}
+\newcommand{\ket}[1]{\left\vert #1 \right\rangle}
+\newcommand{\bra}[1]{\left\langle #1 \right\vert}
+\newcommand{\inpro}[2]{\left\langle #1 \vert #2 \right\rangle}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\newtheorem{innercustomthm}{Theorem}
+\newenvironment{customthm}[1]
+  {\renewcommand\theinnercustomthm{#1}\innercustomthm}
+  {\endinnercustomthm}
+  
+\newtheorem{innercustomlemma}{Lemma}
+\newenvironment{customlemma}[1]
+  {\renewcommand\theinnercustomlemma{#1}\innercustomlemma}
+  {\endinnercustomlemma}
+  
+\newtheorem{innercustomproposition}{Proposition}
+\newenvironment{customproposition}[1]
+  {\renewcommand\theinnercustomproposition{#1}\innercustomproposition}
+  {\endinnercustomproposition}
+
+% AUTHOR
+\newcommand\Author{{\author{Lucchi Manuele}
+\email[]{manuele.lucchi@studenti.unimi.it}
+\affiliation{IT Department, Universita' degli Studi di Milano, Citta' degli Studi, Milano, Italia}}}
+
+% ALL BOLD
+\newcommand\AllBold[1]{{\boldmath\textbf{#1}}}
