@@ -1,5 +1,4 @@
 using Lazy
-import Primes
 
 include("utils.jl")
 
@@ -14,8 +13,8 @@ factor(n, base) = begin
     if base == 0 || base == 1 || n == 0 return 0 end
     val = n
     while val % base == 0
-        counter ++
-        val = val / base    
+        counter += 1
+        val = val ÷ base
     end
     return counter
 end

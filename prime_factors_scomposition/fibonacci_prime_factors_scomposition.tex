@@ -35,7 +35,7 @@ The sequence is $F_n = F_{n-1} + F_{n-2}$. %ALTRO?
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=3in]{Assets/Fibonacci_In_100.png}
+\includegraphics[width=3in]{assets/fibonacci(100).png}
 \caption{The Fibonacci Sequence}
 \end{figure} 
 
@@ -46,7 +46,7 @@ We first tested with the simpler prime numbers. If we look at the power of 2 pre
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=3in]{Assets/PowerOf_2_In_100.png} % Power of 2 in 100
+\includegraphics[width=3in]{assets/factor(100,2).png} % Power of 2 in 100
 \caption{Power of 2 as factor of the first 100 Fibonacci Numbers}
 \end{figure}
 
@@ -54,7 +54,7 @@ It's pretty easy to see some sort of regularity between the power of 2 included 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=3in]{Assets/PowerOf_2_In_1000.png} % Power of 2 in 1000
+\includegraphics[width=3in]{assets/factor(1000,2).png} % Power of 2 in 1000
 \caption{Power of 2 as factor of the first 1000 Fibonacci Numbers}
 \end{figure}
 
@@ -64,7 +64,7 @@ So we can suppose that every number divisible by 3 has its Fibonacci equivalent 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=3in]{Assets/PowerOf_2_Only_3_In_100.png} % Power of 2 in 100 divisible for 3
+\includegraphics[width=3in]{assets/factor(100,2)only(3).png} % Power of 2 in 100 divisible for 3
 \caption{Power of 2 as factor of the first 100 Fibonacci Numbers but only for $n$ divisible by 3}
 \end{figure}
 
@@ -72,7 +72,7 @@ Instead, if we look only at every $n$ not divisible by 3, we get something like 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=3in]{Assets/PowerOf_2_Except_3_In_100.png} % Power of 2 in 100 not divisible for 3
+\includegraphics[width=3in]{assets/factor(100,2)except(3).png} % Power of 2 in 100 not divisible for 3
 \caption{Power of 2 as factor of the first 100 Fibonacci Numbers but only for $n$ not divisible by 3}
 \end{figure}
 
@@ -113,7 +113,7 @@ For example the 3
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=3in]{Assets/PowerOf_3_In_100.png} % Power of 3 in 100
+\includegraphics[width=3in]{assets/factor(100,3).png} % Power of 3 in 100
 \caption{Power of 3 as factor of the first 100 Fibonacci Numbers}
 \end{figure}
 
@@ -121,7 +121,7 @@ Or the 5
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=3in]{Assets/PowerOf_5_In_100.png} % Power of 5 in 100
+\includegraphics[width=3in]{assets/factor(100,5).png} % Power of 5 in 100
 \caption{Power of 5 as factor of the first 100 Fibonacci Numbers}
 \end{figure}
 
@@ -129,7 +129,7 @@ And so on even for bigger prime numbers like 23
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=3in]{Assets/PowerOf_23_In_10000.png} % Power of 23 in 10000
+\includegraphics[width=3in]{assets/factor(10000,23).png} % Power of 23 in 10000
 \caption{Power of 23 as factor of the first 10000 Fibonacci Numbers}
 \end{figure}
 
@@ -169,7 +169,7 @@ For example if we look at power of 4 $(2^2)$ we notice that it's exactly halved 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=3in]{Assets/MultiPowerOf_2_4_In_100.png}
+\includegraphics[width=3in]{assets/factor(100,[2,4]).png}
 \caption{Comparison of powers of 2 and 4 of the first 1000 Fibonacci Numbers}
 \end{figure}
 
@@ -179,7 +179,7 @@ when they are on 1 by subtracting we get this:
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=3in]{Assets/Sub_2_4_DistanceFor_1_In_1000.png}
+\includegraphics[width=3in]{assets/distance(1000,2,4,1,minus).png}
 \caption{Difference between indexes of the same recurrence of the same grade of 2 and 4}
 \end{figure}
 
@@ -187,7 +187,7 @@ As expected it's a linear function. If we try to divide them, again we can see t
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=3in]{Assets/Div_2_4_DistanceFor_1_In_1000.png}
+\includegraphics[width=3in]{assets/distance(1000,2,4,1,div).png}
 \caption{Division between indexes of the same recurrence of the same grade of 2 and 4}
 \end{figure}
 
@@ -198,13 +198,13 @@ But if we try to obtain a choerent behaviour for other couple of numbers we'll b
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=3in]{Assets/Sub_3_9_DistanceFor_1_In_1000.png}
+\includegraphics[width=3in]{assets/distance(1000,3,9,1,minus).png}
 \caption{Difference between indexes of the same recurrence of the same grade of 3 and 9}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=3in]{Assets/Div_3_9_DistanceFor_1_In_1000.png}
+\includegraphics[width=3in]{assets/distance(1000,3,9,1,div).png}
 \caption{Division between indexes of the same recurrence of the same grade of 3 and 9}
 \end{figure}
 
@@ -214,13 +214,13 @@ For example, 2 and 3:
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=3in]{Assets/Sub_2_3_DistanceFor_1_In_500.png}
+\includegraphics[width=3in]{assets/distance(500,2,3,1,minus).png}
 \caption{Difference between indexes of the same recurrence of the same grade of 2 and 3}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=3in]{Assets/Div_2_3_DistanceFor_1_In_500.png}
+\includegraphics[width=3in]{assets/distance(500,2,3,1,div).png}
 \caption{Division between indexes of the same recurrence of the same grade of 2 and 3}
 \end{figure}
 
